@@ -15,7 +15,8 @@ std::string test4[] = {"abcd",
 					   "atuv",
 					   "awxy",
 					   "azad",
-					   "abfh"};
+					   "abfh",
+					   "abrs"};
 
 int main(int argc, char* argv[])
 {

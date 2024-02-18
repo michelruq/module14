@@ -175,11 +175,6 @@ void Trie::getAllChildInner(TrieNode* root, char buf[], std::uint32_t& ind)
 	{
 		std::string result = "";
 		result += buf;
-		for (int i = {0}; i < ind; ++i)
-		{
-			buf[i] = '\0';
-		}
-		ind = 0;
 		std::cout << result << std::endl;
 	}
 	
@@ -188,9 +183,10 @@ void Trie::getAllChildInner(TrieNode* root, char buf[], std::uint32_t& ind)
         if(root->children[i] != nullptr)
         {
             buf[ind] += i + 'a';
-			buf[ind+1] = '\0';
-			(ind)++;
+			++ind;
             getAllChildInner(root->children[i], buf, ind);
+			--ind;
+			buf[ind] = '\0';
         }
     }
 }
