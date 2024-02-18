@@ -175,7 +175,10 @@ int main(int argc, char* argv[])
 	   
 	   std::cout << res << std::endl;*/
 	   
-	   oTrieFourth.GetAllChild(rootFourth, "a");
+	   std::string outgoingString = "";
+	   
+	   oTrieFourth.GetAllChild(rootFourth, argv[1], outgoingString);
+	   std::cout << outgoingString;
    }
    
    delete rootFirst;

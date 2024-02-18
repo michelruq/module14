@@ -7,7 +7,7 @@ class Trie
 {
 	private:
 	   bool isEmpty(TrieNode* root);  
-       void getAllChildInner(TrieNode* root, char buf[], std::uint32_t& ind);	   
+       void getAllChildInner(TrieNode* root, char buf[], std::uint32_t& ind, std::string& outgoingString);	   
 	   
 	public:
        	Trie();
@@ -17,5 +17,5 @@ class Trie
 	    bool Search(struct TrieNode *root, const std::string& key);
 		TrieNode* Remove(TrieNode* root, const std::string& key, std::uint32_t depth);
 	    void FindMinPrefixes(TrieNode* root, char buf[], std::uint32_t ind, std::string& result);
-		void GetAllChild(TrieNode* root, const std::string& prefix);
+		void GetAllChild(TrieNode* root, const std::string& prefix, std::string& outgoingString);
 };

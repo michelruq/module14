@@ -134,7 +134,7 @@ void Trie::FindMinPrefixes(TrieNode* root, char buf[], std::uint32_t ind, std::s
     }
 }
 
-void Trie::GetAllChild(TrieNode* root, const std::string& prefix)
+void Trie::GetAllChild(TrieNode* root, const std::string& prefix, std::string& outgoingString)
 {
 	if(!root)
 	{
@@ -159,12 +159,12 @@ void Trie::GetAllChild(TrieNode* root, const std::string& prefix)
 	std::uint32_t ind = 0;
 	if(result)
 	{
-		getAllChildInner(root, buf, ind);
+		getAllChildInner(root, buf, ind, outgoingString);
 	}
 
 }
 
-void Trie::getAllChildInner(TrieNode* root, char buf[], std::uint32_t& ind)
+void Trie::getAllChildInner(TrieNode* root, char buf[], std::uint32_t& ind, std::string& outgoingString)
 {
 	if(!root)
 	{
@@ -173,9 +173,8 @@ void Trie::getAllChildInner(TrieNode* root, char buf[], std::uint32_t& ind)
 	
 	if(root->mEndOfWord)
 	{
-		std::string result = "";
-		result += buf;
-		std::cout << result << std::endl;
+		outgoingString += buf;
+		outgoingString += '\n';
 	}
 	
 	for(std::uint32_t i = static_cast<std::uint32_t>(0); i < TrieNode::AlphabetSize; ++i)
@@ -184,7 +183,7 @@ void Trie::getAllChildInner(TrieNode* root, char buf[], std::uint32_t& ind)
         {
             buf[ind] += i + 'a';
 			++ind;
-            getAllChildInner(root->children[i], buf, ind);
+            getAllChildInner(root->children[i], buf, ind, outgoingString);
 			--ind;
 			buf[ind] = '\0';
         }
