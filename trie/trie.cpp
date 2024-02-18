@@ -156,23 +156,15 @@ void Trie::GetAllChild(TrieNode* root, const std::string& prefix)
 	}
 	
     char buf[100] = {};
-	int ind = 0;
+	std::uint32_t ind = 0;
 	if(result)
 	{
-		for(std::uint32_t i = static_cast<std::uint32_t>(0); i < TrieNode::AlphabetSize; ++i)
-		{
-			if(root->children[i] != nullptr)
-			{
-				buf[ind] += i + 'a'; 
-				getAllChildInner(root->children[i], buf, ind + 1);
-			    ind = 0;
-			}
-		}
+		getAllChildInner(root, buf, ind);
 	}
 
 }
 
-void Trie::getAllChildInner(TrieNode* root, char buf[], std::uint32_t ind)
+void Trie::getAllChildInner(TrieNode* root, char buf[], std::uint32_t& ind)
 {
 	if(!root)
 	{
@@ -187,6 +179,7 @@ void Trie::getAllChildInner(TrieNode* root, char buf[], std::uint32_t ind)
 		{
 			buf[i] = '\0';
 		}
+		ind = 0;
 		std::cout << result << std::endl;
 	}
 	
@@ -195,8 +188,9 @@ void Trie::getAllChildInner(TrieNode* root, char buf[], std::uint32_t ind)
         if(root->children[i] != nullptr)
         {
             buf[ind] += i + 'a';
-			buf[ind+1] = '\0' ;
-            getAllChildInner(root->children[i], buf, ind + 1);
+			buf[ind+1] = '\0';
+			(ind)++;
+            getAllChildInner(root->children[i], buf, ind);
         }
     }
 }

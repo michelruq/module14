@@ -7,7 +7,7 @@ class Trie
 {
 	private:
 	   bool isEmpty(TrieNode* root);  
-       void getAllChildInner(TrieNode* root, char buf[], std::uint32_t ind);	   
+       void getAllChildInner(TrieNode* root, char buf[], std::uint32_t& ind);	   
 	   
 	public:
        	Trie();
